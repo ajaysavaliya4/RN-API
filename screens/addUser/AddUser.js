@@ -7,6 +7,7 @@ import {useDispatch} from 'react-redux';
 import {addUser} from '../../actions/actions';
 import ButtonView from '../../components/button/Button';
 import Input from '../../components/input/Input';
+
 import styles from './styles';
 
 const AddUser = ({navigation, route}) => {

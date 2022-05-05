@@ -10,9 +10,9 @@ import {
   RefreshControl,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {addUsers} from '../../actions/actions';
 
 import ListItem from '../../components/listItem/ListItem';
+import {getData} from '../../data/Data';
 import styles from './styles';
 
 LogBox.ignoreLogs([
@@ -40,28 +40,7 @@ export default function UserList({navigation}) {
   const dataReducer = useSelector(state => state.dataReducer);
   const {users} = dataReducer;
 
-  useEffect(() => getData(), []);
-
-  const getData = () => {
-    const myHeaders = new Headers();
-    myHeaders.append(
-      'Authorization',
-      'Bearer bc1e0809f9bb5ce03125ea49290ec9c8acc225870ebd21e484217e79b88800db',
-    );
-    myHeaders.append('Content-Type', 'application/json');
-    fetch('https://gorest.co.in/public/v1/users', {
-      method: 'GET',
-      headers: myHeaders,
-    })
-      .then(response => response.json())
-      .then(results => {
-        dispatch(addUsers(results.data));
-      })
-      .catch(err => {
-        console.log(err);
-      })
-      .finally(() => setIsFetching(false));
-  };
+  useEffect(() => getData({dispatch, setIsFetching}), []);
 
   const renderItem = ({item, index}) => {
     return (
