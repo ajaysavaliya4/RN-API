@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {
   FlatList,
-  StyleSheet,
   SafeAreaView,
   View,
   Text,
@@ -11,9 +10,10 @@ import {
   RefreshControl,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {addUsers} from '../actions/actions';
+import {addUsers} from '../../actions/actions';
 
-import ListItem from '../components/ListItem';
+import ListItem from '../../components/listItem/ListItem';
+import styles from './styles';
 
 LogBox.ignoreLogs([
   'Require cycle:',
@@ -109,37 +109,3 @@ export default function UserList({navigation}) {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F5F5F5',
-  },
-
-  activityIndicatorContainer: {
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-  },
-
-  floatingButton: {
-    backgroundColor: '#03d7fc',
-    borderColor: '#03d7fc',
-    height: 55,
-    width: 55,
-    borderRadius: 55 / 2,
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'absolute',
-    bottom: 30,
-    right: 15,
-    shadowColor: '#000000',
-    shadowOpacity: 0.5,
-    shadowRadius: 2,
-    shadowOffset: {
-      height: 1,
-      width: 0,
-    },
-  },
-});

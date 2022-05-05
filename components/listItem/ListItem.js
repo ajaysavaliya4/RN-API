@@ -1,14 +1,8 @@
 import React from 'react';
-import {
-  Alert,
-  Button,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Alert, Button, Text, TouchableOpacity, View} from 'react-native';
 import {useDispatch} from 'react-redux';
-import {deleteUser} from '../actions/actions';
+import {deleteUser} from '../../actions/actions';
+import styles from './styles';
 
 const ListItem = ({item, index, navigation, onEdit, getData}) => {
   const dispatch = useDispatch();
@@ -61,25 +55,4 @@ const ListItem = ({item, index, navigation, onEdit, getData}) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {},
-  text: {
-    fontSize: 20,
-    color: '#000000',
-  },
-  userData: {
-    width: 250,
-    backgroundColor: '#03d7fc',
-    marginVertical: 10,
-    marginHorizontal: 10,
-    borderRadius: 10,
-    padding: 5,
-  },
-  row: {
-    flexDirection: 'row',
-    width: 350,
-    maxWidth: '80%',
-  },
-  delete: {justifyContent: 'center'},
-});
 export default ListItem;

@@ -1,18 +1,12 @@
 /* eslint-disable dot-notation */
 import React, {useState} from 'react';
-
-import {
-  Button,
-  KeyboardAvoidingView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import {KeyboardAvoidingView, Text, View} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {useDispatch} from 'react-redux';
-import {updateUser} from '../actions/actions';
+import {updateUser} from '../../actions/actions';
+import ButtonView from '../../components/button/Button';
+import Input from '../../components/input/Input';
+import styles from '../addUser/styles';
 
 const EditUser = ({route, navigation}) => {
   const dispatch = useDispatch();
@@ -64,33 +58,21 @@ const EditUser = ({route, navigation}) => {
   return (
     <KeyboardAvoidingView style={{flex: 1}}>
       <View style={styles.modalView}>
+        <Input label="Name" value={name} onChangeText={text => setName(text)} />
+        <Input
+          label="Email"
+          onChangeValue={text => setEmail(text)}
+          value={email}
+          keyboardType="email-address"
+        />
+        <Input
+          label="Gender"
+          onChangeValue={text => setGender(text)}
+          value={gender}
+        />
+
         <View style={styles.rowContainer}>
-          <Text style={styles.label}>Name: </Text>
-          <TextInput
-            style={styles.input}
-            value={name}
-            onChangeText={text => setName(text)}
-          />
-        </View>
-        <View style={styles.rowContainer}>
-          <Text style={styles.label}>Email: </Text>
-          <TextInput
-            style={styles.input}
-            keyboardType="email-address"
-            value={email}
-            onChangeText={text => setEmail(text)}
-          />
-        </View>
-        <View style={styles.rowContainer}>
-          <Text style={styles.label}>Gender: </Text>
-          <TextInput
-            style={styles.input}
-            value={gender}
-            onChangeText={text => setGender(text)}
-          />
-        </View>
-        <View style={styles.rowContainer}>
-          <Text style={styles.label}>Status: </Text>
+          <Text style={styles.text}>Status: </Text>
           <DropDownPicker
             key={user.id}
             open={open}
@@ -101,35 +83,13 @@ const EditUser = ({route, navigation}) => {
             setItems={setItems}
             placeholder={`${status}`}
             onChangeValue={text => setStatus(text)}
+            style={styles.dropDown}
           />
         </View>
       </View>
-      <View style={{marginTop: 35}}>
-        <Button title="Update" onPress={onSave} color="#03d7fc" />
-      </View>
+      <ButtonView onPress={onSave} title="Update" />
     </KeyboardAvoidingView>
   );
 };
-
-const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    width: 250,
-    margin: 12,
-    borderWidth: 1,
-  },
-  label: {
-    fontSize: 22,
-    color: '#000000',
-  },
-  rowContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  modalView: {
-    width: 280,
-  },
-});
 
 export default EditUser;
