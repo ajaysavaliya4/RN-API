@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable dot-notation */
 import React, {useState} from 'react';
 import {KeyboardAvoidingView, Text, View} from 'react-native';
@@ -6,6 +7,7 @@ import {useDispatch} from 'react-redux';
 import {updateUser} from '../../actions/actions';
 import ButtonView from '../../components/button/Button';
 import Input from '../../components/input/Input';
+
 import styles from '../addUser/styles';
 
 const EditUser = ({route, navigation}) => {
@@ -23,6 +25,7 @@ const EditUser = ({route, navigation}) => {
   const [gender, setGender] = useState(`${user.gender}`);
   const [status, setStatus] = useState(`${user.status}`);
 
+  // submit edit user data
   const onSave = () => {
     let edit = user !== null;
     let user_ = {};

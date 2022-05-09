@@ -20,9 +20,6 @@ const styles = StyleSheet.create({
     color: '#000000',
     width: 90,
   },
-  dropDown: {
-    marginHorizontal: 18,
-  },
 });
 
 export default styles;

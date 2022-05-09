@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 /* eslint-disable dot-notation */
 import React, {useState} from 'react';
 import {Alert, KeyboardAvoidingView, Text, View} from 'react-native';
@@ -25,6 +26,7 @@ const AddUser = ({navigation, route}) => {
   const [gender, setGender] = useState('');
   const [status, setStatus] = useState('');
 
+  // submit new user data
   const onSave = () => {
     const myHeaders = new Headers();
     if (name != '' && email != '' && gender != '' && status != '') {
@@ -93,7 +95,6 @@ const AddUser = ({navigation, route}) => {
             placeholder="Select Status"
             onChangeValue={text => setStatus(text)}
             style={styles.dropDown}
-            // onOpen={Keyboard.dismiss()}
           />
         </View>
       </View>

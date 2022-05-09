@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useEffect, useState} from 'react';
 import {
   FlatList,
@@ -40,8 +41,9 @@ export default function UserList({navigation}) {
   const dataReducer = useSelector(state => state.dataReducer);
   const {users} = dataReducer;
 
-  useEffect(() => getData({dispatch, setIsFetching}), []);
+  useEffect(() => getData({dispatch, setIsFetching}), [dispatch]);
 
+  // render user list
   const renderItem = ({item, index}) => {
     return (
       <ListItem
@@ -69,6 +71,7 @@ export default function UserList({navigation}) {
   } else {
     return (
       <SafeAreaView style={styles.container}>
+        {/* UserList from server */}
         <FlatList
           data={users}
           renderItem={renderItem}
@@ -78,6 +81,7 @@ export default function UserList({navigation}) {
           keyExtractor={(item, index) => `quotes_${index}`}
         />
 
+        {/* floating action button */}
         <TouchableHighlight
           style={styles.floatingButton}
           underlayColor="#ff7043"
